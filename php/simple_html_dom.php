@@ -667,14 +667,14 @@ class simple_html_dom_node
         // find each selector
         for ($c = 0; $c < $count; ++$c) {
             // The change on the below line was documented on the sourceforge code tracker id 2788009
-            // used to be: if (($levle=count($selectors[0]))===0) return array();
-            if (($levle = count($selectors[$c])) === 0) return array();
+            // used to be: if (($level=count($selectors[0]))===0) return array();
+            if (($level = count($selectors[$c])) === 0) return array();
             if (!isset($this->_[HDOM_INFO_BEGIN])) return array();
 
             $head = array($this->_[HDOM_INFO_BEGIN] => 1);
 
             // handle descendant selectors, no recursive!
-            for ($l = 0; $l < $levle; ++$l) {
+            for ($l = 0; $l < $level; ++$l) {
                 $ret = array();
                 foreach ($head as $k => $v) {
                     $n = ($k === -1) ? $this->dom->root : $this->dom->nodes[$k];
@@ -1144,7 +1144,7 @@ class simple_html_dom
         // strip out cdata
         $this->remove_noise("'<!\[CDATA\[(.*?)\]\]>'is", true);
         // Per sourceforge http://sourceforge.net/tracker/?func=detail&aid=2949097&group_id=218559&atid=1044037
-        // Script tags removal now preceeds style tag removal.
+        // Script tags removal now precedes style tag removal.
         // strip out <script> tags
         $this->remove_noise("'<\s*script[^>]*[^/]>(.*?)<\s*/\s*script\s*>'is");
         $this->remove_noise("'<\s*script\s*>(.*?)<\s*/\s*script\s*>'is");
@@ -1616,7 +1616,7 @@ class simple_html_dom
         // PaperG: Attributes should not have \r or \n in them, that counts as html whitespace.
         $node->attr[$name] = str_replace("\r", "", $node->attr[$name]);
         $node->attr[$name] = str_replace("\n", "", $node->attr[$name]);
-        // PaperG: If this is a "class" selector, lets get rid of the preceeding and trailing space since some people leave it in the multi class case.
+        // PaperG: If this is a "class" selector, lets get rid of the preceding and trailing space since some people leave it in the multi class case.
         if ($name == "class") {
             $node->attr[$name] = trim($node->attr[$name]);
         }
